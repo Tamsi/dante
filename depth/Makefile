@@ -1,11 +1,11 @@
 ##
-## Makefile for dante in home/tbesson/projet_cpe/dante/gen
+## Makefile for dante in home/tbesson/projet_cpe/dante/depth
 ## 
 ## Made by Besson Tamsi
 ## Login   <tamsi.besson@epitech.eu>
 ## 
 ## Started on  Mon Apr 24 09:49:40 2015 Tamsi Besson
-## Last update Sat May  6 18:29:10 2017 Tamsi Besson
+## Last update Tue May  9 15:26:04 2017 Tamsi Besson
 ##
 
 CC	=	gcc

@@ -5,7 +5,7 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Thu Apr 27 15:04:14 2017 Tamsi Besson
-** Last update Tue May  9 15:10:01 2017 Tamsi Besson
+** Last update Tue May  9 16:46:11 2017 Tamsi Besson
 */
 
 #include "depth.h"
@@ -53,15 +53,16 @@ void dfs(t_graph *graph, char **maze, int v)
 {
   t_node *node;
 
-  graph->adjList[v].node->visited = 0;
-  printf("%d\n", v);
   node = graph->adjList[v].node;
+  //node->visited = 0;
   maze[node->pos.y][node->pos.x] = 'o';
   while (node)
   {
-    //printf("id = %i\n", node->id);
     if (node->visited == 1)
+    {
+      node->visited = 0;
       dfs(graph, maze, node->id);
+    }
     node = node->next;
   }
 }
