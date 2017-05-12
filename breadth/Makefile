@@ -5,7 +5,7 @@
 ## Login   <tamsi.besson@epitech.eu>
 ## 
 ## Started on  Mon Apr 24 09:49:40 2015 Tamsi Besson
-## Last update Sun May  7 16:44:59 2017 Tamsi Besson
+## Last update Tue May  9 18:16:25 2017 Tamsi Besson
 ##
 
 CC	=	gcc
@@ -16,6 +16,8 @@ NAME   =	breadth
 
 SRC  	=	main.c \
 		graph.c \
+		node.c \
+		queue.c \
 		src/my_strcat.c \
 		src/get_next_line.c
 

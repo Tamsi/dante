@@ -5,7 +5,7 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Thu Apr 27 15:04:14 2017 Tamsi Besson
-** Last update Sun May  7 20:32:31 2017 Tamsi Besson
+** Last update Fri May 12 11:17:40 2017 Tamsi Besson
 */
 
 #include "breadth.h"
@@ -22,7 +22,7 @@ char  **open_map(int fd)
   return (maze);
 }
 
-void BFS(t_graph *graph, char **maze)
+/*void BFS(t_graph *graph, char **maze)
 {
   int i;
   int j;
@@ -31,23 +31,70 @@ void BFS(t_graph *graph, char **maze)
 
   visited = malloc(count_vertices(maze) * sizeof(t_node));
   i = 0;
-  while (i < count_vertices(maze))
+  while (i < graph->vertices)
   {
     visited[i] = 0;
     i++;
   }
   t_node *node = graph->adjList[0].node;
-  while(node != NULL)
+  while (node != NULL)
   {
     visited[node->id] = 1;
-    if (node->next != NULL && !visited[node->next->id])
+    while (node->next != NULL)
     {
-      node = node->next;
-      printf("%d\n", graph->adjList[id].node->id);
-      id = graph->adjList[id].node->id;
-      if (graph->adjList[id].node->next != NULL)
-        id = graph->adjList[id].node->next->id;
+      visited[node->id] = 1;
+      printf("%d\n", node->id);
+      
     }
+    node = node->next;
+    // if (node->next != NULL && !visited[node->next->id])
+    // {
+    //   node = node->next;
+    //   printf("%d\n", graph->adjList[id].node->id);
+    // }
+    // else
+    // {
+
+    // }
+  }
+}*/
+
+t_queue new_queue(t_graph *graph, int v)
+{
+  t_queue q;
+  initQueue(&q);
+  enqueue(&q, graph, v);
+  while (!ifEmpty(&q))
+  {
+    graph->adjList[v].node = front(&q);
+    dequeue(&q);
+  }
+  return (q);
+}
+
+void bfs(t_graph *graph, char **maze, int v)
+{
+  t_queue q;
+  t_node *node;
+  int i = 0;
+
+  q = new_queue(graph, v);
+  //printf("%s\n", "adazdazdazdad");
+  while (ifEmpty(&q) == 1)
+  {
+    node = graph->adjList[v].node;
+    maze[node->pos.y][node->pos.x] = 'o';
+    //printf("%s\n", "aaxwcwxcwcxwxcxcwxcw");
+    while (node->visited == 1 && node->next)
+    {
+      node->visited = 0;
+      enqueue(&q, graph, v);
+      node = node->next;
+    }
+    v = node->id;
+    printf("node->id = %d\n", v);
+    //printf("%s\n", "kcokkocskodcskocds");
+    dequeue(&q);
   }
 }
 
@@ -67,7 +114,7 @@ int main(int ac, char **av)
   graph = createGraph(count_vertices(maze));
   fill_graph(maze, graph);
   displayGraph(graph);
-  BFS(graph, maze);
+  bfs(graph, maze, 0);
   while (maze[i])
     printf("%s\n", maze[i++]);
   return (0);

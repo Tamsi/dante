@@ -5,19 +5,10 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Fri May  5 17:59:21 2017 Tamsi Besson
-** Last update Sun May  7 19:59:14 2017 Tamsi Besson
+** Last update Thu May 11 18:38:56 2017 Tamsi Besson
 */
 
 #include "breadth.h"
-
-t_node *createNode(int v)
-{
-  t_node *newNode;
-
-  newNode = malloc(sizeof(t_node *));
-  newNode->id = v;
-  return (newNode);
-}
 
 t_graph *createGraph(int n)
 {
@@ -35,11 +26,10 @@ t_graph *createGraph(int n)
       graph->adjList[i].members = 0;
       i++;
     }
-
   return (graph);
 }
 
-void destroyGraph(t_graph * graph)
+void destroyGraph(t_graph *graph)
 {
   int v;
   t_node *adjListPtr;
@@ -67,13 +57,14 @@ void destroyGraph(t_graph * graph)
     }
 }
 
-void addEdge(t_graph *graph, int src, int dest)
+void addEdge(t_graph *graph, int src, int dest, t_pos pos)
 {
   t_node *newNode;
 
   newNode = createNode(dest);
   newNode->next = graph->adjList[src].node;
   graph->adjList[src].node = newNode;
+  graph->adjList[src].node->pos = pos;
   graph->adjList[src].members++;
   // newNode = createNode(src);
   // newNode->next = graph->adjList[dest].node;
@@ -101,21 +92,6 @@ void displayGraph(t_graph *graph)
   }
 }
 
-int count_vertices(char **maze)
-{
-  int i;
-  int size;
-
-  i = 0;
-  size = 0;
-  while (maze[i])
-    {
-      size += my_strlen(maze[i]);
-      i++;
-    }
-  return (size);
-}
-
 void fill_graph(char **maze, t_graph *graph)
 {
   t_pos pos;
@@ -133,28 +109,32 @@ void fill_graph(char **maze, t_graph *graph)
               addEdge(
                 graph,
                 pos.y * my_strlen(maze[pos.y]) + pos.x,
-                pos.y * my_strlen(maze[pos.y]) + pos.x + 1
+                pos.y * my_strlen(maze[pos.y]) + pos.x + 1,
+                pos
               );
           if (maze[pos.y + 1] != NULL)
             if (maze[pos.y + 1][pos.x] == '*')
               addEdge(
                 graph,
                 pos.y * my_strlen(maze[pos.y]) + pos.x,
-                (pos.y + 1)* my_strlen(maze[pos.y]) + pos.x
+                (pos.y + 1) * my_strlen(maze[pos.y]) + pos.x,
+                pos
               );
           if (pos.x > 0)
             if (maze[pos.y][pos.x - 1] == '*')
               addEdge(
                 graph,
                 pos.y * my_strlen(maze[pos.y]) + pos.x,
-                pos.y * my_strlen(maze[pos.y]) + pos.x - 1
+                pos.y * my_strlen(maze[pos.y]) + pos.x - 1,
+                pos
               );
           if (pos.y > 0)
             if (maze[pos.y - 1][pos.x] == '*')
               addEdge(
                 graph,
                 pos.y * my_strlen(maze[pos.y]) + pos.x,
-                (pos.y - 1)* my_strlen(maze[pos.y]) + pos.x
+                (pos.y - 1) * my_strlen(maze[pos.y]) + pos.x,
+                pos
               );
         }
       pos.x++;

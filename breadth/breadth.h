@@ -5,7 +5,7 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Thu Apr 27 16:36:21 2017 Tamsi Besson
-** Last update Sun May  7 16:17:34 2017 Tamsi Besson
+** Last update Thu May 11 15:20:05 2017 Tamsi Besson
 */
 
 #include <stdlib.h>
@@ -26,23 +26,48 @@ typedef struct s_pos
 typedef struct s_node
 {
   int id;
+  int visited;
+  t_pos pos;
   struct s_node *next;
 } t_node;
 
 typedef struct s_list
 {
-	int members;
-	t_node *node;
+  int members;
+  t_node *node;
 } t_list;
 
 typedef struct s_graph
 {
-	int vertices;
-	t_list *adjList;
+  int vertices;
+  t_list *adjList;
 } t_graph;
 
+typedef struct s_elemQueue
+{
+  t_node *value;
+  struct s_elemQueue *next;
+} t_elemQueue;
+
+typedef struct s_queue
+{
+  t_elemQueue *head;
+  t_elemQueue *tail;
+} t_queue;
+
+void fill_graph(char **, t_graph *);
+void initQueue(t_queue *);
+void enqueue(t_queue *, t_graph *, int);
+void dequeue(t_queue *);
+void destroyGraph(t_graph *);
+void addEdge(t_graph *, int, int, t_pos);
+void displayGraph(t_graph *);
 void fill_graph(char **, t_graph *);
 int my_strlen(char *);
 int count_vertices(char **);
+int ifEmpty(t_queue *);
 char *my_strcat(char *, char *);
 char *get_next_line(const int);
+t_node *front(t_queue *);
+t_node *createNode(int);
+t_graph *createGraph(int);
