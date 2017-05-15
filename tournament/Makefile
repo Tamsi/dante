@@ -5,7 +5,7 @@
 ## Login   <tamsi.besson@epitech.eu>
 ## 
 ## Started on  Mon Apr 24 09:49:40 2015 Tamsi Besson
-## Last update Fri Apr 28 17:48:30 2017 Yoann Kersulec
+## Last update Sun May 14 21:58:55 2017 Tamsi Besson
 ##
 
 CC	=	gcc
@@ -15,6 +15,10 @@ RM      =	rm -f
 NAME   =	solver
 
 SRC  	=	main.c \
+		graph.c \
+		node.c \
+		queue.c \
+		fill.c \
 		src/my_strcat.c \
 		src/get_next_line.c
 

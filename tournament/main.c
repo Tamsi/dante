@@ -5,7 +5,7 @@
 ** Login   <tbesson@epitech.net>
 ** 
 ** Started on  Thu Apr 27 15:04:14 2017 Tamsi Besson
-** Last update Sun May 14 22:36:46 2017 Tamsi Besson
+** Last update Sun May 14 22:37:22 2017 Tamsi Besson
 */
 
 #include "breadth.h"
@@ -27,7 +27,7 @@ static t_queue bfs2(t_node *node, t_queue q, int *visited, int prev)
   while (node != NULL)
     {
       if (visited[node->id] < -1)
-        enqueue(&q, node, prev);
+	enqueue(&q, node, prev);
       node = node->next;
     }
   return (q);
@@ -50,15 +50,15 @@ static int *bfs(t_graph *graph, int v)
   visited[v] = -1;
   prev = -1;
   while (!ifEmpty(&q))
-  {
-    node = front(&q);
-    prev = previous(&q);
-    dequeue(&q);
-    visited[node->id] = prev;
-    prev = node->id;
-    node = graph->adjList[node->id].node;
-    q = bfs2(node, q, visited, prev);
-  }
+    {
+      node = front(&q);
+      prev = previous(&q);
+      dequeue(&q);
+      visited[node->id] = prev;
+      prev = node->id;
+      node = graph->adjList[node->id].node;
+      q = bfs2(node, q, visited, prev);
+    }
   return (visited);
 }
 
@@ -71,15 +71,15 @@ static void disp_path(t_graph *graph, char **maze)
   visited = bfs(graph, 0);
   n = graph->vertices - 1;
   while (n >= 0)
-  {
-    maze[n / 10][n % 10] = 'o';
-    n = visited[n];
-  }
+    {
+      maze[n / 10][n % 10] = 'o';
+      n = visited[n];
+    }
   i = 0;
   while (maze[i])
-  {
-    printf("%s\n", maze[i++]);
-  }
+    {
+      printf("%s\n", maze[i++]);
+    }
 }
 
 int main(int ac, char **av)

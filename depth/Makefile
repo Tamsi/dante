@@ -5,17 +5,18 @@
 ## Login   <tamsi.besson@epitech.eu>
 ## 
 ## Started on  Mon Apr 24 09:49:40 2015 Tamsi Besson
-## Last update Tue May  9 15:26:04 2017 Tamsi Besson
+## Last update Sun May 14 22:08:28 2017 Tamsi Besson
 ##
 
 CC	=	gcc
 
 RM      =	rm -f
 
-NAME   =	depth
+NAME   =	solver
 
 SRC  	=	main.c \
-				graph.c \
+		graph.c \
+		fill.c \
 		src/my_strcat.c \
 		src/get_next_line.c
 

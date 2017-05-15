@@ -5,18 +5,19 @@
 ** Login   <tamsi.besson@epitech.eu>
 ** 
 ** Started on  Mon Apr 24 09:48:25 2017 Tamsi Besson
-** Last update Fri Apr 28 10:59:15 2017 Tamsi Besson
+** Last update Mon May 15 15:19:58 2017 Tamsi Besson
 */
 
 #include "my.h"
 
-int	perfect_mod(char **av)
+int     perfect_mod(char **av)
 {
-  int	fd;
+  int   fd;
   char **tab;
 
-  if ((fd = open(my_strcat("../mazes/", av[3]), O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
-		 | S_IRGRP | S_IWGRP | S_IWUSR)) != -1)
+  if ((fd = open(my_strcat("../mazes/", av[3]),
+                 O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+                 | S_IRGRP | S_IWGRP | S_IWUSR)) != -1)
     {
       tab = set_maze(atoi(av[1]), atoi(av[2]));
       tab = draw_perfect(tab, atoi(av[1]), atoi(av[2]));
@@ -24,10 +25,10 @@ int	perfect_mod(char **av)
       return (0);
     }
   else
-  {
-    my_putstr("Erreur with open\n");
-    return (84);
-  }
+    {
+      my_putstr("Erreur with open\n");
+      return (84);
+    }
 }
 
 int imperfect_mod(char **av)
@@ -35,8 +36,9 @@ int imperfect_mod(char **av)
   int fd;
   char **tab;
 
-  if ((fd = open(my_strcat("../mazes/", av[3]), O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
-     | S_IRGRP | S_IWGRP | S_IWUSR)) != -1)
+  if ((fd = open(my_strcat("../mazes/", av[3]),
+                 O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR
+                 | S_IRGRP | S_IWGRP | S_IWUSR)) != -1)
     {
       tab = set_maze(atoi(av[1]), atoi(av[2]));
       tab = draw_imperfect(tab, atoi(av[1]), atoi(av[2]));
@@ -44,13 +46,13 @@ int imperfect_mod(char **av)
       return (0);
     }
   else
-  {
-    my_putstr("Erreur with open\n");
-    return (84);
-  }
+    {
+      my_putstr("Erreur with open\n");
+      return (84);
+    }
 }
 
-int	main(int ac, char **av)
+int     main(int ac, char **av)
 {
 
   if (ac < 4)

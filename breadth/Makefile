@@ -5,19 +5,20 @@
 ## Login   <tamsi.besson@epitech.eu>
 ## 
 ## Started on  Mon Apr 24 09:49:40 2015 Tamsi Besson
-## Last update Tue May  9 18:16:25 2017 Tamsi Besson
+## Last update Mon May 15 16:02:05 2017 Tamsi Besson
 ##
 
 CC	=	gcc
 
 RM      =	rm -f
 
-NAME   =	breadth
+NAME   	=	solver
 
 SRC  	=	main.c \
 		graph.c \
 		node.c \
 		queue.c \
+		fill.c \
 		src/my_strcat.c \
 		src/get_next_line.c
 
